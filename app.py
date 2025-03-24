@@ -82,7 +82,7 @@ async def stock_price_trends_tool(stock_name: str) -> str:
         print(f"[Error] Unexpected error: {e}")
         return "Error: Unable to fetch data due to an unexpected issue."
     messages = project_client.agents.list_messages(thread_id=thread.id)
-    messages = project_client.agents.list_messages(thread_id=thread.id)
+    
 
     # Clean up
     project_client.agents.delete_agent(agent.id)
@@ -120,7 +120,7 @@ async def news_analysis_tool(stock_name: str) -> str:
         print(f"[Error] Unexpected error: {e}")
         return "Error: Unable to fetch data due to an unexpected issue."
     messages = project_client.agents.list_messages(thread_id=thread.id)
-    messages = project_client.agents.list_messages(thread_id=thread.id)
+    
 
     # Clean up
     project_client.agents.delete_agent(agent.id)
@@ -162,7 +162,6 @@ async def market_sentiment_tool(stock_name: str) -> str:
         print(f"[Error] Unexpected error: {e}")
         return "Error: Unable to fetch data due to an unexpected issue."
     messages = project_client.agents.list_messages(thread_id=thread.id)
-    messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
     project_client.agents.delete_agent(agent.id)
@@ -202,7 +201,7 @@ async def analyst_reports_tool(stock_name: str) -> str:
         print(f"[Error] Unexpected error: {e}")
         return "Error: Unable to fetch data due to an unexpected issue."
     messages = project_client.agents.list_messages(thread_id=thread.id)
-    messages = project_client.agents.list_messages(thread_id=thread.id)
+   
 
     # Clean up
     project_client.agents.delete_agent(agent.id)
