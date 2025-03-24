@@ -73,7 +73,15 @@ async def stock_price_trends_tool(stock_name: str) -> str:
         content=f"Please get stock price trends data for {stock_name}."
     )
     # Process the run
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    try:
+        run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    except KeyError as e:
+        print(f"[Error] Missing key in response: {e}")
+        return "Error: Unable to fetch data due to missing information."
+    except Exception as e:
+        print(f"[Error] Unexpected error: {e}")
+        return "Error: Unable to fetch data due to an unexpected issue."
+    messages = project_client.agents.list_messages(thread_id=thread.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -103,7 +111,15 @@ async def news_analysis_tool(stock_name: str) -> str:
         role="user",
         content=f"Retrieve the latest news articles and summaries about {stock_name}."
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    try:
+        run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    except KeyError as e:
+        print(f"[Error] Missing key in response: {e}")
+        return "Error: Unable to fetch data due to missing information."
+    except Exception as e:
+        print(f"[Error] Unexpected error: {e}")
+        return "Error: Unable to fetch data due to an unexpected issue."
+    messages = project_client.agents.list_messages(thread_id=thread.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -137,7 +153,15 @@ async def market_sentiment_tool(stock_name: str) -> str:
             f"Gather market sentiment, user opinions, and overall feeling about {stock_name}."
         )
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    try:
+        run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    except KeyError as e:
+        print(f"[Error] Missing key in response: {e}")
+        return "Error: Unable to fetch data due to missing information."
+    except Exception as e:
+        print(f"[Error] Unexpected error: {e}")
+        return "Error: Unable to fetch data due to an unexpected issue."
+    messages = project_client.agents.list_messages(thread_id=thread.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -169,7 +193,15 @@ async def analyst_reports_tool(stock_name: str) -> str:
         role="user",
         content=(f"Find recent analyst reports, price targets, or professional opinions on {stock_name}.")
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    try:
+        run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    except KeyError as e:
+        print(f"[Error] Missing key in response: {e}")
+        return "Error: Unable to fetch data due to missing information."
+    except Exception as e:
+        print(f"[Error] Unexpected error: {e}")
+        return "Error: Unable to fetch data due to an unexpected issue."
+    messages = project_client.agents.list_messages(thread_id=thread.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -201,7 +233,14 @@ async def expert_opinions_tool(stock_name: str) -> str:
         role="user",
         content=(f"Collect expert opinions or quotes about {stock_name}.")
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    try:
+        run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    except KeyError as e:
+        print(f"[Error] Missing key in response: {e}")
+        return "Error: Unable to fetch data due to missing information."
+    except Exception as e:
+        print(f"[Error] Unexpected error: {e}")
+        return "Error: Unable to fetch data due to an unexpected issue."
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
