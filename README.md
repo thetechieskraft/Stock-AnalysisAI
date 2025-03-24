@@ -36,7 +36,7 @@ This project leverages **AutoGen**, a framework for building AI agents and appli
 
 ### 4. Configure Environment Variables
 13. Set the required **environment variables** for Azure AI Hub and Bing Search.
-14. Ensure the **model version** is set to `"2025-01-01-preview"`.
+14. Ensure the **model version** is set to `"2025-01-01-preview"` or you can copy it target URI of model deployment.
 
 ---
 
