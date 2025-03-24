@@ -46,6 +46,7 @@ conn_id = bing_connection.id
 ###############################################################################
 #                               BING QUERY TOOLS
 ###############################################################################
+
 async def stock_price_trends_tool(stock_name: str) -> str:
     """
     A dedicated Bing call focusing on real-time stock prices,
@@ -329,12 +330,15 @@ investment_team = RoundRobinGroupChat(
 #                                   MAIN
 ###############################################################################
 async def main():
-    stock_name = "tata motors"
-    await Console(
-        investment_team.run_stream(
-            task=f"Analyze stock trends, news, and sentiment for {stock_name}, plus analyst reports and expert opinions, and then decide whether to invest."
+    try:
+        stock_name = "tata motors"
+        await Console(
+            investment_team.run_stream(
+                task=f"Analyze stock trends, news, and sentiment for {stock_name}, plus analyst reports and expert opinions, and then decide whether to invest."
+            )
         )
-    )
+    except Exception as e:
+        print(f"Error in main: {e}")
 
 if __name__ == "__main__":
     asyncio.run(main())
