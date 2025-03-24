@@ -54,7 +54,7 @@ async def stock_price_trends_tool(stock_name: str) -> str:
     print(f"[stock_price_trends_tool] Fetching stock price trends for {stock_name}...")
     bing = BingGroundingTool(connection_id=conn_id)
     agent = project_client.agents.create_agent(
-        model="gpt-4o",
+        model=MODEL_DEPLOYMENT_NAME,
         name="stock_price_trends_tool_agent",
         instructions=(
             f"Focus on retrieving real-time stock prices, changes over the last few months, "
@@ -72,7 +72,7 @@ async def stock_price_trends_tool(stock_name: str) -> str:
         content=f"Please get stock price trends data for {stock_name}."
     )
     # Process the run
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -89,7 +89,7 @@ async def news_analysis_tool(stock_name: str) -> str:
     print(f"[news_analysis_tool] Fetching news for {stock_name}...")
     bing = BingGroundingTool(connection_id=conn_id)
     agent = project_client.agents.create_agent(
-        model="gpt-4o",
+        model=MODEL_DEPLOYMENT_NAME,
         name="news_analysis_tool_agent",
         instructions=f"Focus on the latest news highlights for the stock {stock_name}.",
         tools=bing.definitions,
@@ -102,7 +102,7 @@ async def news_analysis_tool(stock_name: str) -> str:
         role="user",
         content=f"Retrieve the latest news articles and summaries about {stock_name}."
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -119,7 +119,7 @@ async def market_sentiment_tool(stock_name: str) -> str:
     print(f"[market_sentiment_tool] Fetching sentiment for {stock_name}...")
     bing = BingGroundingTool(connection_id=conn_id)
     agent = project_client.agents.create_agent(
-        model="gpt-4o",
+        model=MODEL_DEPLOYMENT_NAME,
         name="market_sentiment_tool_agent",
         instructions=(
             f"Focus on analyzing general market sentiment regarding {stock_name}."
@@ -136,7 +136,7 @@ async def market_sentiment_tool(stock_name: str) -> str:
             f"Gather market sentiment, user opinions, and overall feeling about {stock_name}."
         )
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -153,7 +153,7 @@ async def analyst_reports_tool(stock_name: str) -> str:
     print(f"[analyst_reports_tool] Fetching analyst reports for {stock_name}...")
     bing = BingGroundingTool(connection_id=conn_id)
     agent = project_client.agents.create_agent(
-        model="gpt-4o",
+        model=MODEL_DEPLOYMENT_NAME,
         name="analyst_reports_tool_agent",
         instructions=(
             f"Focus on any relevant analyst reports or professional analyses about {stock_name}."
@@ -168,7 +168,7 @@ async def analyst_reports_tool(stock_name: str) -> str:
         role="user",
         content=(f"Find recent analyst reports, price targets, or professional opinions on {stock_name}.")
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -185,7 +185,7 @@ async def expert_opinions_tool(stock_name: str) -> str:
     print(f"[expert_opinions_tool] Fetching expert opinions for {stock_name}...")
     bing = BingGroundingTool(connection_id=conn_id)
     agent = project_client.agents.create_agent(
-        model="gpt-4o",
+        model=MODEL_DEPLOYMENT_NAME,
         name="expert_opinions_tool_agent",
         instructions=(
             f"Focus on industry expert or thought leader opinions regarding {stock_name}."
@@ -200,7 +200,7 @@ async def expert_opinions_tool(stock_name: str) -> str:
         role="user",
         content=(f"Collect expert opinions or quotes about {stock_name}.")
     )
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
+    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
     messages = project_client.agents.list_messages(thread_id=thread.id)
 
     # Clean up
@@ -329,7 +329,7 @@ investment_team = RoundRobinGroupChat(
 #                                   MAIN
 ###############################################################################
 async def main():
-    stock_name = "Tesla"
+    stock_name = "tata motors"
     await Console(
         investment_team.run_stream(
             task=f"Analyze stock trends, news, and sentiment for {stock_name}, plus analyst reports and expert opinions, and then decide whether to invest."
